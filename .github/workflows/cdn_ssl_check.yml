@@ -1,9 +1,9 @@
 name: CDNetworks SSL Monitor Bot
 
 on:
-  schedule:
+  # schedule:
     # 每天台灣時間早上 09:00 執行
-    - cron: '0 1 * * *'
+    # - cron: '0 1 * * *'
   workflow_dispatch: # 允許手動測試執行
 
 jobs:
