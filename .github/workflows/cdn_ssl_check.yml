@@ -1,0 +1,32 @@
+name: CDNetworks SSL Monitor Bot
+
+on:
+  schedule:
+    # 每天台灣時間早上 09:00 執行
+    - cron: '0 1 * * *'
+  workflow_dispatch: # 允許手動測試執行
+
+jobs:
+  check-ssl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Execute SSL Check
+        env:
+          # 這裡對應你在 GitHub 設定的 Secrets 名稱
+          CDN_ACCESS_KEY: ${{ secrets.CDN_ACCESS_KEY }}
+          CDN_SECRET_KEY: ${{ secrets.CDN_SECRET_KEY }}
+          CDN_BOT_TOKEN: ${{ secrets.CDN_BOT_TOKEN }}
+          CDN_CHAT_ID: ${{ secrets.CDN_CHAT_ID }}
+          SSL_WARNING_DAYS: 5
+        run: python cdn_ssl_check.py
