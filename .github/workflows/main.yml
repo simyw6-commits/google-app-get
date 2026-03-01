@@ -4,10 +4,10 @@ on:
   # 設定每天定時執行 (UTC 時間 01:00，對應台灣時間早上 09:00)
   schedule:
     - cron: '38 23 * * *'
-  
-  # 允許你隨時在 GitHub 網頁上手動點擊按鈕執行 (測試用)
   workflow_dispatch:
-
+  # 新增這個：允許外部 API 觸發
+  repository_dispatch:
+    types: [manual_trigger]
 jobs:
   screenshot-job:
     runs-on: ubuntu-latest # 使用最新的 Linux 虛擬機
