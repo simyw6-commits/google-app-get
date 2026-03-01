@@ -2,8 +2,8 @@ name: Daily App Screenshot Bot
 
 on:
   # 設定每天定時執行 (UTC 時間 01:00，對應台灣時間早上 09:00)
-  schedule:
-    - cron: '38 23 * * *'
+  #schedule:
+  #  - cron: '38 23 * * *'
   workflow_dispatch:
   # 新增這個：允許外部 API 觸發
   repository_dispatch:
